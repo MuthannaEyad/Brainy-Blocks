@@ -1,0 +1,116 @@
+* {
+    box-sizing: border-box; /* Ensures padding and borders are included in total width and height */
+  }
+  body {
+    font-family: Arial, Tahoma, sans-serif; 
+  }
+  
+  /* Control buttons styling */
+  .control-buttons {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    z-index: 2; /* Ensures it's above other content */
+    background-color: rgba(3, 169, 244, 0.9); /* Semi-transparent blue background */
+  }
+  .control-buttons span {
+    position: absolute;
+    left: 50%;
+    top: 50%; 
+    transform: translate(-50%, -50%); /* Adjust for exact centering */
+    background-color: #F44336;
+    color: #FFF; 
+    padding: 15px 25px;
+    font-size: 30px; 
+    text-align: center;
+    border-radius: 6px; 
+    cursor: pointer; 
+  }
+  
+  /* Info container styling */
+  .info-container {
+    max-width: 90%; 
+    margin: 20px auto 0;
+    background-color: #F6F6F6; 
+    padding: 20px; 
+    font-size: 24px; 
+    overflow: hidden; /* Hides overflowing content */
+    border: 2px solid #2196f3; /* Blue border */
+  }
+  .info-container .name, .info-container .tries {
+    width: 100%; 
+    text-align: center; /* Centered text */
+  }
+  
+  /* Memory game blocks styling */
+  .memory-game-blocks {
+    display: flex; 
+    flex-wrap: wrap; /* Allows items to wrap to next line */
+    justify-content: center; 
+    margin: 20px auto; 
+  }
+  .memory-game-blocks .game-block {
+    height: 200px; 
+    transition: transform .5s; /* Smooth transition for transform */
+    transform-style: preserve-3d; /* 3D transform style */
+    cursor: pointer; /* Pointer cursor on hover */
+    position: relative;
+    flex: 1 0 21%; /* Flex basis with 21% width */
+    margin: 10px; 
+  }
+  .memory-game-blocks .game-block .back img {
+    width: 80%;
+    height: auto; /* Maintain aspect ratio */
+    margin-top: 10%; 
+  }
+  
+  /* Responsive adjustments for smaller screens */
+  @media screen and (max-width: 768px) {
+    .control-buttons span, .info-container {
+      font-size: 20px; /* Smaller font size for smaller screens */
+    }
+    .memory-game-blocks .game-block {
+      flex: 1 0 46%; /* Larger block size for smaller screens */
+    }
+  }
+  
+  .memory-game-blocks.no-clicking {
+    pointer-events: none; /* Disables clicking */
+  }
+  .memory-game-blocks .game-block .front {
+    background-color: #333; 
+    line-height: 200px; /* Aligns content vertically */
+  }
+  .memory-game-blocks .game-block .front:before {
+    content: '!'; /* Content before the front face */
+    color: #FFF; 
+    font-size: 140px; 
+    font-weight: bold; 
+  }
+  .memory-game-blocks .game-block .back {
+    background-color: #607D8B;
+    transform: rotateY(180deg); /* Rotated for back face */
+  }
+  .memory-game-blocks .game-block .back img {
+    width: 140px; 
+    height: 140px; 
+    margin-top: 30px; /* Margin at the top of images */
+  }
+  .memory-game-blocks .game-block .face {
+    position: absolute;
+    width: 100%; 
+    height: 100%; 
+    text-align: center; 
+    backface-visibility: hidden; /* Hides the back face when flipped */
+    border: 5px solid #2196F3; /* Blue border */
+  }
+  .memory-game-blocks .game-block.is-flipped,
+  .memory-game-blocks .game-block.has-match {
+    -webkit-transform: rotateY(180deg); /* Flip transformation for compatibility */
+    -moz-transform: rotateY(180deg); /* Flip transformation for compatibility */
+    transform: rotateY(180deg); /* Flip transformation */
+    pointer-events: none; /* Disable pointer events */
+  }
+  
